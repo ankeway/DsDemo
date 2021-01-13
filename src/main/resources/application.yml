@@ -1,0 +1,45 @@
+management:
+  server:
+    port: 32010
+  endpoints:
+    jmx:      exposure:        include: "*"
+    web:
+      exposure: 
+        include: "*"
+      cors:
+        allowed-headers: "*"
+        allowed-origins: "*"
+        allowed-methods: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    health:
+      enabled: true
+      show-details: ALWAYS      
+#--------------------------------------------------------------------
+spring:
+  datasource:
+    dynamic:
+      primary: mysql-ds-master
+      strict: false
+      datasource:
+        mysql-ds-master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.zaxxer.hikari.HikariDataSource
+          url: jdbc:mysql://192.168.14.205:3306/waimai?useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+          username: wmai
+          password: waimai
+          hikari:
+            pool-name: HikariPool-1
+        mysql-ds-slave:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.zaxxer.hikari.HikariDataSource
+          url: jdbc:mysql://192.168.14.205:3306/waimai?useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+          username: wmai
+          password: waimai
+          hikari:
+            pool-name: HikariPool-1          
